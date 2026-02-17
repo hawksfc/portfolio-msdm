@@ -1,22 +1,20 @@
-import Image from "next/image";
+// components/Hero.tsx
+import Image from "next/image"; // Mantén esto por si usas imágenes luego
 
-export default function Home() {
+export default function Hero() {
   return (
-    <main className="min-h-screen flex flex-col items-center justify-center p-8 text-center bg-antracita selection:bg-cobre selection:text-white">
-      
-      {/* Contenedor Principal con límite de ancho */}
-      <div className="max-w-3xl w-full space-y-8 animate-in fade-in zoom-in duration-700">
+    // AQUÍ DEBES PEGAR EL JSX (EL HTML) QUE TIENES EN PAGE.TSX
+    // Pista: Copia desde el <div className="max-w-3xl..."> hasta que cierra ese div.
+    // No copies el <main>, solo el contenido de adentro.
+    <>
+       {/* Pega aquí tu código */}
+       <div className="max-w-3xl w-full space-y-8 animate-in fade-in zoom-in duration-700">
         
         {/* 1. LOGO (Simulado por ahora) */}
-        <div className="mx-auto">
-          <Image
-            src="/logos/msdm_logo.png"
-            alt="Logo MSDM"
-            width={120}
-            height={120}
-            className="inline"
-            priority
-          />
+        <div className="mx-auto w-32 h-32 border-4 border-cobre flex items-center justify-center rounded-lg shadow-[0_0_30px_rgba(194,120,3,0.2)]">
+          <span className="text-4xl font-titillium font-bold text-cobre tracking-tighter">
+            MSDM
+          </span>
         </div>
 
         {/* 2. TITULAR */}
@@ -48,6 +46,6 @@ export default function Home() {
         </div>
 
       </div>
-    </main>
+    </>
   );
 }
