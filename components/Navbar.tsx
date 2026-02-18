@@ -1,53 +1,106 @@
-"use client" //Convierte en componente interactivo
-import Image from "next/image";
+"use client";
+
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 
 export default function Navbar() {
-    const pathname = usePathname();
+  const pathname = usePathname();
 
-    const isActive = (path: string) => {
-        return pathname === path;
-    };
-
-    const mobileIconClass = (path: string) => {
-        `flex flex-col items-center justify-center w-full h-full space-y-1 ${isActive(path) ? "text-cobre" : "text-grisClaro hover:text-white"}`;
-    }
+  const isActive = (path: string) => pathname === path;
 
   return (
     <>
-    {/*
-    ================================================
-    VERSIÓN ESCRITORIO (TOP NAVIGATION)
-    - Visible de 'md' para arriba
-    ================================================
-    */}
-    <nav className="hidden md:flex fixed top-0 w-full z-50 bg-antracita/90 backdrop-blur-md border-b border-white/10 h-16 items-center px-8 justify-between">
-    {/* Logo */}
-        <Link href="/" className="flex items-center gap-2">
-          {/* Asegúrate de tener tu logo.png en /public */}
-          <Image src="/logos/msdm_logo.png" alt="Logo" width={32} height={32} className="w-8 h-8 object-contain" priority />
-          <span className="text-xl font-titillium font-bold text-white">
-            MS<span className="text-cobre">DM</span>
+      {/* ==============================================
+          🖥️ VERSIÓN ESCRITORIO (Top Navigation)
+      =============================================== */}
+      <nav className="hidden md:flex fixed top-0 w-full z-50 bg-antracita/80 backdrop-blur-xl border-b border-white/5 h-20 items-center px-12 justify-between transition-all duration-300">
+        
+        {/* LOGO con efecto Hover */}
+        <Link href="/" className="group flex items-center gap-3">
+          <div className="relative w-10 h-10 transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3">
+            <Image 
+              src="/logo.png" 
+              alt="Logo" 
+              fill
+              className="object-contain drop-shadow-[0_0_8px_rgba(194,120,3,0.5)]" 
+              priority 
+            />
+          </div>
+          <span className="text-xl font-titillium font-bold text-white tracking-widest group-hover:text-cobre transition-colors">
+            MSDM
           </span>
         </Link>
 
-        {/* Links Escritorio */}
-        <div className="flex gap-8 font-opensans text-sm font-semibold items-center">
-            <Link href="/" className={isActive("/") ? "text-cobre border-b-2 border-cobre pb-1" : "text-grisClaro hover:text-verdeTech transition-colors"}>
-                INICIO
+        {/* LINKS con "Láser Underline" */}
+        <div className="flex gap-10 font-opensans text-sm font-semibold items-center">
+          {["/", "/proyectos", "/sobre-mi"].map((path) => (
+            <Link 
+              key={path}
+              href={path} 
+              className={`relative group py-2 ${isActive(path) ? "text-white" : "text-grisClaro hover:text-white"}`}
+            >
+              {/* Texto del Link */}
+              <span className="relative z-10 transition-colors duration-300">
+                {path === "/" ? "INICIO" : path.replace("/", "").toUpperCase().replace("-", " ")}
+              </span>
+              
+              {/* Línea animada (Láser) */}
+              <span className={`absolute bottom-0 left-0 h-[2px] bg-gradient-to-r from-cobre to-yellow-500 transition-all duration-300 ease-out 
+                ${isActive(path) ? "w-full shadow-[0_0_10px_#C27803]" : "w-0 group-hover:w-full group-hover:shadow-[0_0_10px_#C27803]"}
+              `}></span>
             </Link>
-            <Link href="/projects" className={isActive("/proyectos") ? "text-cobre border-b-2 border-cobre pb-1" : "text-grisClaro hover:text-verdeTech transition-colors"}>
-                PROjECTS
+          ))}
+
+          {/* Botón Contactar con efecto Glow */}
+          <Link 
+            href="/contacto" 
+            className="px-6 py-2.5 bg-transparent border border-cobre text-cobre rounded hover:bg-cobre hover:text-white hover:shadow-[0_0_15px_rgba(194,120,3,0.6)] transition-all duration-300 text-xs tracking-widest font-bold"
+          >
+            CONTACTAR
+          </Link>
+        </div>
+      </nav>
+
+      {/* ==============================================
+          📱 VERSIÓN MÓVIL (Bottom Navigation)
+      =============================================== */}
+      <nav className="md:hidden fixed bottom-4 left-4 right-4 z-50 bg-[#1F2937]/90 backdrop-blur-lg border border-white/10 h-20 rounded-2xl shadow-2xl pb-1">
+        <div className="grid grid-cols-4 h-full items-center justify-items-center">
+          
+          {/* Mapeamos los items para no repetir código */}
+          {[
+            { path: "/", label: "Inicio", icon: "M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" },
+            { path: "/proyectos", label: "Proyectos", icon: "M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" },
+            { path: "/sobre-mi", label: "Perfil", icon: "M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" },
+            { path: "/contacto", label: "Contacto", icon: "M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" },
+          ].map((item) => (
+            <Link 
+              key={item.path} 
+              href={item.path} 
+              className="relative flex flex-col items-center justify-center w-full h-full group"
+            >
+              {/* Fondo brillante (Cápsula) - Solo visible si está activo */}
+              {isActive(item.path) && (
+                <span className="absolute -top-3 w-10 h-1 bg-cobre rounded-full shadow-[0_0_10px_#C27803] animate-pulse"></span>
+              )}
+              
+              {/* Icono con animación de rebote sutil al hover */}
+              <div className={`transition-all duration-300 ${isActive(item.path) ? "text-cobre -translate-y-1" : "text-gray-400 group-hover:text-white"}`}>
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d={item.icon} />
+                </svg>
+              </div>
+
+              {/* Texto */}
+              <span className={`text-[10px] font-bold mt-1 transition-colors ${isActive(item.path) ? "text-white" : "text-gray-500"}`}>
+                {item.label}
+              </span>
             </Link>
-            <Link href="/about-me" className={isActive("/sobre-mi") ? "text-cobre border-b-2 border-cobre pb-1" : "text-grisClaro hover:text-verdeTech transition-colors"}>
-                SOBRE MÍ
-            </Link>
-            <Link href="/contact" className="px-4 py-2 border border-cobre text-cobre rounded hover:bg-cobre hover:text-white transition-all text-xs">
-                CONTACTAR
-            </Link>
-            </div>
-        </nav>
+          ))}
+
+        </div>
+      </nav>
     </>
   );
 }
