@@ -1,53 +1,9 @@
 import Image from "next/image";
-
+import Hero from "@/components/Hero";
 export default function Home() {
   return (
-    <main className="min-h-screen flex flex-col items-center justify-center p-8 text-center bg-antracita selection:bg-cobre selection:text-white">
-      
-      {/* Contenedor Principal con límite de ancho */}
-      <div className="max-w-3xl w-full space-y-8 animate-in fade-in zoom-in duration-700">
-        
-        {/* 1. LOGO (Simulado por ahora) */}
-        <div className="mx-auto">
-          <Image
-            src="/logos/msdm_logo.png"
-            alt="Logo MSDM"
-            width={120}
-            height={120}
-            className="inline"
-            priority
-          />
-        </div>
-
-        {/* 2. TITULAR */}
-        <div className="space-y-2">
-          <h1 className="text-5xl md:text-7xl font-titillium font-bold text-white tracking-tight">
-            MISAEL DELGADO
-          </h1>
-          <h2 className="text-xl md:text-2xl text-verdeTech font-opensans font-semibold tracking-widest uppercase">
-            INGENIERÍA · MECHATRONICS · IOT
-          </h2>
-        </div>
-
-        {/* 3. DESCRIPCIÓN */}
-        <p className="text-grisClaro font-opensans text-lg md:text-xl max-w-2xl mx-auto leading-relaxed">
-          Conectando el mundo físico con la inteligencia digital.
-          <br className="hidden md:block" />
-          Desarrollador Full Stack y Especialista en Automatización.
-        </p>
-
-        {/* 4. BOTONES DE ACCIÓN (CTA) */}
-        <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4">
-          <button className="px-8 py-3 bg-cobre text-white font-titillium font-bold text-lg rounded hover:bg-[#a66502] transition-colors shadow-lg">
-            Ver Proyectos
-          </button>
-          
-          <button className="px-8 py-3 border-2 border-verdeTech text-verdeTech font-titillium font-bold text-lg rounded hover:bg-verdeTech/10 transition-colors">
-            Contactar
-          </button>
-        </div>
-
-      </div>
+    <main className="min-h-screen flex flex-col items-center justify-center p-8 text-center bg-grisClaro/50 selection:bg-cobre selection:text-white">
+      <Hero />
     </main>
   );
 }
