@@ -14,7 +14,7 @@ export default function Navbar() {
       {/* ==============================================
           🖥️ VERSIÓN ESCRITORIO (Top Navigation)
       =============================================== */}
-      <nav className="hidden md:flex fixed top-0 w-full z-50 bg-white/80 backdrop-blur-xl border border-white/5 h-16 items-center px-12 justify-between transition-all duration-300 rounded-2xl">
+      <nav className="hidden md:flex fixed top-0 w-full z-50 bg-white/80 backdrop-blur-xl border border-white/5 h-14 items-center px-12 justify-between transition-all duration-300 rounded-2xl">
         
         {/* LOGO con efecto Hover */}
         <Link href="/" className="group flex items-center gap-3">
@@ -27,7 +27,7 @@ export default function Navbar() {
               priority 
             />
           </div>
-          <span className="text-xl font-titillium font-bold text-white tracking-widest group-hover:text-cobre transition-colors">
+          <span className="text-xl font-titillium font-bold text-antracita tracking-widest group-hover:text-cobre transition-colors">
             MSDM
           </span>
         </Link>
@@ -38,7 +38,7 @@ export default function Navbar() {
             <Link 
               key={path}
               href={path} 
-              className={`relative group py-2 ${isActive(path) ? "text-white" : "text-grisClaro hover:text-white"}`}
+              className={`relative group py-2 ${isActive(path) ? "text-antracita" : "text-gray-500 hover:text-white"}`}
             >
               {/* Texto del Link */}
               <span className="relative z-10 transition-colors duration-300">
