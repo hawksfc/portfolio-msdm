@@ -1,5 +1,6 @@
 // 1. Importa el Navbar
 import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
 import type { Metadata } from "next";
 import { Titillium_Web, Open_Sans } from "next/font/google";
 import "./globals.css";
@@ -34,6 +35,8 @@ export default function RootLayout({children,}: Readonly<{children: React.ReactN
         
         {/* El children son tus páginas (Home, Proyectos, etc) */}
         {children}
+
+        <Footer />
       </body>
     </html>
   );

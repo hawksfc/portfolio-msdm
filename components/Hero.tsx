@@ -60,9 +60,9 @@ export default function Hero() {
         </div>
 
         {/* ==============================================
-            COLUMNA DERECHA: PORTAL ESCALABLE (Efecto 3D Recuperado)
+            COLUMNA DERECHA: PORTAL ESCALABLE (Efecto 3D
         =============================================== */}
-        <div className="relative order-1 lg:order-2 flex justify-center items-end h-[350px] md:h-[550px] lg:h-[750px] w-full animate-in fade-in zoom-in duration-1000 delay-200">
+        <div className="relative order-1 lg:order-2 lg:mt-24 flex justify-center items-end h-[350px] md:h-[550px] lg:h-[750px] w-full animate-in fade-in zoom-in duration-1000 delay-200">
           
           {/* Brillo de fondo dinámico */}
           <div className="absolute bottom-[10%] w-[60%] aspect-square bg-cobre/15 rounded-full blur-[80px] md:blur-[120px] animate-pulse z-0" />
