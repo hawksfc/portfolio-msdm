@@ -14,75 +14,7 @@ import {
   Filter
 } from "lucide-react";
 
-// Definición de proyectos
-const allProjects = [
-  {
-    id: 1,
-    title: "Capital Gym Web",
-    description: "Sistema de gestión integral con pasarela de pagos, reservas en tiempo real y panel de administración avanzado.",
-    image: "/background/hero_bg.jpg",
-    category: "Web",
-    tags: ["Next.js", "TypeScript", "Prisma", "Stripe"],
-    github: "#",
-    link: "#",
-    featured: true
-  },
-  {
-    id: 2,
-    title: "Monitoreo Industrial IoT",
-    description: "Dashboard para la visualización de datos provenientes de sensores ESP32 en tiempo real mediante el protocolo MQTT.",
-    image: "/background/hero_bg.jpg",
-    category: "IoT",
-    tags: ["React", "Node.js", "MQTT", "ESP32"],
-    github: "#",
-    link: "#",
-    featured: true
-  },
-  {
-    id: 3,
-    title: "Hawktronic Brand Identity",
-    description: "Rediseño de identidad visual y landing page optimizada para conversión de servicios tecnológicos.",
-    image: "/background/hero_bg.jpg",
-    category: "Diseño",
-    tags: ["Figma", "Branding", "Tailwind CSS"],
-    github: "#",
-    link: "#",
-    featured: false
-  },
-  {
-    id: 4,
-    title: "Control de Acceso Biométrico",
-    description: "Integración de hardware biométrico con bases de datos en la nube para control de personal.",
-    image: "/background/hero_bg.jpg",
-    category: "IoT",
-    tags: ["C++", "Firebase", "ESP32", "Next.js"],
-    github: "#",
-    link: "#",
-    featured: false
-  },
-  {
-    id: 5,
-    title: "E-commerce de Tecnología",
-    description: "Tienda online con carrito de compras, gestión de inventario y optimización SEO.",
-    image: "/background/hero_bg.jpg",
-    category: "Web",
-    tags: ["React", "Shopify API", "Tailwind"],
-    github: "#",
-    link: "#",
-    featured: false
-  },
-  {
-    id: 6,
-    title: "Portfolio MSDM v2",
-    description: "Esta misma plataforma, diseñada para máxima velocidad y una estética glassmorphism premium.",
-    image: "/background/hero_bg.jpg",
-    category: "Diseño",
-    tags: ["Next.js 15", "Framer Motion", "Tailwind"],
-    github: "#",
-    link: "#",
-    featured: true
-  }
-];
+import { allProjects } from "@/lib/projects-data";
 
 const categories = ["Todos", "Web", "IoT", "Diseño"];
 
@@ -189,7 +121,7 @@ export default function ProjectsPage() {
                 {/* Acciones */}
                 <div className="flex items-center gap-3">
                   <Link 
-                    href={project.link}
+                    href={`/projects/${project.id}`}
                     className="flex-grow py-3 bg-white/5 hover:bg-cobre text-white text-center rounded-xl font-bold text-xs transition-all duration-300 flex items-center justify-center gap-2 border border-white/5 hover:border-cobre"
                   >
                     PROYECTO COMPLETO
@@ -206,6 +138,7 @@ export default function ProjectsPage() {
             </div>
           ))}
         </div>
+
 
         {/* Empty State si no hay proyectos */}
         {filteredProjects.length === 0 && (
